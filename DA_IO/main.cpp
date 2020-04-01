@@ -1,13 +1,24 @@
 #include "mbed.h"
 #include<cmath>
 Serial pc( USBTX, USBRX );
-//DigitalIn s(SW3);
+DigitalIn s(SW3);
 AnalogOut Aout(DAC0_OUT);
+DigitalOut R(LED_RED),G(LED_GREEN);
 AnalogIn Ain(A0);
-BusOut D4_11 (D4,D5,D6,D7,D8,D9,D10,D11);
+BusOut D4_11 (D6, D7, D9, D10, D11, D5, D4, D8);
 Timer t;
+int power_10(int n){
+    int temp=1;
+    for(int i=0;i<n;i++){
+        temp*=10;
+    }
+    return temp;
+}
+
 int main(){
     pc.printf("start\r\n");
+    R=true;
+    G=true;
     t.start();
     double a=0,b=0;
     while(1){
@@ -31,9 +42,21 @@ int main(){
         length++;
     }
     while(1){
-        for(int i=0;i<length;i++){
-            wait(0.5);
+        if(s==1){
+            G=true;
+            R=false;
+            for(int i=length-1;i>=0;i--){
+                D4_11=sevD_code[(freq/power_10(i))%10];
+                wait(0.5);
+                D4_11=0x00;
+                wait(0.1);
+            }
+        }else{
+            R=true;
+            G=false;
         }
+        
+        D4_11=0x00;
         wait(3);
     }
 }
