@@ -14,10 +14,6 @@ void sineWave(){
     Aout=offset+ampl*sin(2*3.14159*freq*t.read());
 }
 
-void GLed(){
-    G=!G;
-}
-
 char sevD_code[10]={0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
 void showFreq(){
     for(int i=length-1;i>=0;i--){

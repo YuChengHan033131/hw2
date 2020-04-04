@@ -13,6 +13,7 @@ int length;
 int main(){
     R=true;
     G=false;
+    //measuring first period b-a
     t.start();
     double a=0,b=0;
     while(1){
@@ -30,24 +31,29 @@ int main(){
     }
     freq=(int)round(1./(b-a));
     int temp=freq;
+    //digits of freq
     length=0;
     while(temp!=0){
         temp/=10;
         length++;
     }
-    int sample=500;
+    //sampling Ain
+    int sample=220;
     float *ADCdata=new float[sample];
     for (int i = 0; i < sample; i++){
-        ADCdata[i] = Ain;
+        float temp=Ain;
+        ADCdata[i] = temp;
         wait(1./sample);
     }
     for (int i = 0; i < sample; i++){
         pc.printf("%1.3f\r\n", ADCdata[i]);
         //wait(0.1);
     }
+    //SW3 relevant event
     SEvent.start(callback(&queue,&EventQueue::dispatch_forever));
     s.fall(&SPressed);
     s.rise(&SReleased);
+
     while(1){
         //sine wave generation
         sineWave();

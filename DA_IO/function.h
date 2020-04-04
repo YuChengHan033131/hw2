@@ -13,7 +13,6 @@ extern DigitalOut R,G;
 extern EventQueue queue;
 int power_10(int n);
 void sineWave();
-void GLed();
 void showFreq();
 void SPressed();
 void SReleased();
