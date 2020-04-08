@@ -1,5 +1,6 @@
 BUILD/K66F/GCC_ARM/DA_IO/main.o: DA_IO/main.cpp \
- BUILD/K66F/GCC_ARM/mbed_config.h /home/ee2405/ee2405/mbed-os/mbed.h \
+ BUILD/K66F/GCC_ARM/mbed_config.h DA_IO/function.h \
+ /home/ee2405/ee2405/mbed-os/mbed.h \
  /home/ee2405/ee2405/mbed-os/platform/mbed_version.h \
  /home/ee2405/ee2405/mbed-os/rtos/rtos.h \
  /home/ee2405/ee2405/mbed-os/rtos/mbed_rtos_storage.h \

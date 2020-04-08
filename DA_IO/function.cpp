@@ -17,7 +17,11 @@ void sineWave(){
 char sevD_code[10]={0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
 void showFreq(){
     for(int i=length-1;i>=0;i--){
-        D4_11=sevD_code[(freq/power_10(i))%10];
+        if(i==0){
+            D4_11=sevD_code[(freq/power_10(i))%10]|0x80;
+        }else{
+            D4_11=sevD_code[(freq/power_10(i))%10];
+        }
         wait(0.5);
         D4_11=0x00;
         wait(0.1);
